@@ -1,0 +1,48 @@
+﻿<Window x:Class="IESUX.PruductDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IESUX"
+        mc:Ignorable="d"
+        Title="PruductDialogWindow" Height="380" Width="600" MinWidth="600" MinHeight="380" MaxHeight="600" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="201*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock  Grid.Row="1" Margin="0,0,0,0"><Run Text="                                      "/><LineBreak/><Run Text="                                    ID"/></TextBlock>
+        <TextBlock Grid.Row="2" Margin="0,0,0,0" ><Run/><LineBreak/><Run Text="                                Description"/></TextBlock>
+        <Button Grid.Row="3" x:Name="Scanner" Content="Scan Barcode or QrCode" Margin="0,0,0,0" />
+        <TextBlock Grid.Row="4" Margin="0,0,0,0"  ><Run Text="                      "/><LineBreak/><Run Text="                                      Cost"/></TextBlock>
+        <TextBlock Grid.Row="5" Margin="0,0,0,0"><Run/><LineBreak/><Run Text="                                    Amount"/></TextBlock>
+        <TextBlock Grid.Row="6" Margin="0,0,0,0"><Run/><LineBreak/><Run Text="                                  Total Cost"/></TextBlock>
+
+        <TextBox x:Name="ID" Grid.Row="1" Grid.Column="1" Margin="0,0,10,0"/>
+        <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Margin="0,0,10,0" FontSize="20" />
+        <TextBox x:Name="BarCode" Text="Write manually..." Grid.Row="3" Grid.Column="1" Margin="0,0,10,0" FontSize="16"/>
+        <TextBox x:Name="Cost" Grid.Row="4" Grid.Column="1" Margin="0,0,10,0"/>
+        <TextBox x:Name="Amount" Grid.Row="5" Grid.Column="1" Margin="0,0,10,0"/>
+        <TextBlock x:Name="TotalCost" Grid.Row="6" Grid.Column="1" Margin="0,0,10,0" />
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="190,40,0,0" Grid.RowSpan="2">
+            <Button x:Name="OKButton" Content="OK" Width="100" Margin="5,0" Click="OKButton_Click"/>
+            <Button x:Name="CancelButton" Content="Cancel" Width="100" Click="CancelButton_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
