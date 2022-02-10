@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace IESUX
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Main window class 
     /// </summary>
     public partial class MainWindow : Window
     {
