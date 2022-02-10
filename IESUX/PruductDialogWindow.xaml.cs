@@ -31,26 +31,50 @@ namespace IESUX
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            this.DialogResult = false;
             Close();
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             ProductDTO product = new ProductDTO();
-            product.Id = int.Parse(ID.Text);
-            product.Description = Description.Text;
-            product.Cost = float.Parse(Cost.Text);
+            try
+            {
+                product.Id = int.Parse(ID.Text);
+                product.Description = Description.Text;
+                product.Cost = float.Parse(Cost.Text);
+            }
+            catch(Exception exception)
+            {
+                Error.Text = exception.Message;
+                return;
+            }
+
             ResultDTO result = products.Add(product);
 
             if (result.Error == true)
             {
-                TotalCost.Text = result.Message;
+                Error.Text = result.Message;
             }
             else
             {
+                this.DialogResult = true;
                 Close();
             }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OKButton_Click(null, null);
+            }
+            else
+            if (e.Key == Key.Escape)
+            {
+                CancelButton_Click(null, null);
+            }
+
         }
     }
 }

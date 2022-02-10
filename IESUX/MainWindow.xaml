@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IESUX"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Inventory Ecosystem" Height="450" Width="800">
     <Grid>
-        <Button x:Name="AddProductButton" Content="Add Product" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Click="AddProductButton_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="204*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+          <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
+        </StackPanel>
+
+        <ListView x:Name="ProductsListView" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="AUTO"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

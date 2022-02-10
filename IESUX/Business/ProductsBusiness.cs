@@ -57,9 +57,9 @@ namespace IESUX.Business
             resultDTO.Message = "Product does not exist";
             return resultDTO;
         }
-        public ProductDTO Get()
+        public ProductsDTO Get()
         {
-            return productsRepository.Get();
+            return productsDTO;
         }
     }
 }

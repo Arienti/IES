@@ -26,45 +26,57 @@ namespace IESUX
         public MainWindow()
         {
             InitializeComponent();
-            
-            ProductDTO product = new ProductDTO();
-            product.Id = 11;
-            product.Cost = 10.55f;
-            product.Description = "wifi router by xiaomi";
-            products.Add(product);
-            product = new ProductDTO();
-            product.Id = 15;
-            product.Cost = 14.55f;
-            product.Description = "xiaomi";
-            products.Add(product);
-            product = new ProductDTO();
-            product.Id = 11;
-            product.Cost = 11.55f;
-            product.Description = "xiaomisd";
-            products.Edit(product);
-
-            //ProductDTO product = products.Get();
 
 
-            UsersBusiness users = new UsersBusiness();
-            UserDTO user = new UserDTO();
-            user.name = "Alberti";
-            user.email = "Alberti@gmail.com";
-            users.Add(user);
-            user = new UserDTO();
-            user.name = "berti";
-            user.email = "berti@gmail.com";
-            users.Add(user);
-            user = new UserDTO();
-            user.name = "Alberti";
-            user.email = "Alberti@gmail.com";
-            users.Add(user);
-            //UserDTO user = users.Get();
+            GridView gridView = new GridView();
+
+            ProductsListView.View = gridView;
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Id",
+                DisplayMemberBinding = new Binding("Id")
+            });
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Description",
+                DisplayMemberBinding = new Binding("Description")
+            });
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Cost",
+                DisplayMemberBinding = new Binding("Cost")
+            });
+
+            RefreshProductsList();
         }
+
+        private void RefreshProductsList()
+        {
+            ProductsDTO productsDTO = products.Get();
+
+            ProductsListView.Items.Clear();
+
+            foreach(ProductDTO product in productsDTO.Items)
+            {
+                ProductsListView.Items.Add(product);
+            }
+
+
+        }
+
+
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
-            pruductDialogWindow.ShowDialog();
+            pruductDialogWindow.Owner = this;
+
+            if (pruductDialogWindow.ShowDialog() == true)
+            {
+                RefreshProductsList();
+            }
         }
     }
 }
