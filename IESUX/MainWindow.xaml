@@ -13,6 +13,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
           <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
+            <Button x:Name="Edit" Content="Edit" Width="100" HorizontalAlignment="Left" Click="Edit_Click"></Button>
         </StackPanel>
 
         <ListView x:Name="ProductsListView" Grid.Row="1">

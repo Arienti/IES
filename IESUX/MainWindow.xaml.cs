@@ -28,10 +28,9 @@ namespace IESUX
             InitializeComponent();
 
 
-            GridView gridView = new GridView();
-
+            GridView gridView = new GridView(); 
             ProductsListView.View = gridView;
-
+  
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "Id",
@@ -59,15 +58,11 @@ namespace IESUX
 
             ProductsListView.Items.Clear();
 
-            foreach(ProductDTO product in productsDTO.Items)
+            foreach (ProductDTO product in productsDTO.Items)
             {
                 ProductsListView.Items.Add(product);
             }
-
-
         }
-
-
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
@@ -77,6 +72,20 @@ namespace IESUX
             {
                 RefreshProductsList();
             }
+        }
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
+            GridView gridView= new GridView();
+            
+            foreach (ProductDTO product in ProductsListView.Items)
+            {
+                pruductDialogWindow.ID.Text = product.Id.ToString();
+                pruductDialogWindow.Description.Text = product.Description.ToString();
+                pruductDialogWindow.Cost.Text = product.Cost.ToString();
+
+            }
+            pruductDialogWindow.ShowDialog();
         }
     }
 }
