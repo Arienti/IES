@@ -20,7 +20,8 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="AUTO" />
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="AUTO"/>
                     <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="AUTO"/>
                 </GridView>
             </ListView.View>

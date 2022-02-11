@@ -12,10 +12,15 @@ namespace IESUX.Business
     {
         private ProductsDTO productsDTO = new ProductsDTO();
 
-        private ProductsRepository productsRepository = new ProductsRepository();     
+        private ProductsRepository productsRepository = new ProductsRepository();
 
-        public ProductsBusiness()
+        private CategoriesBusiness categories = null;
+
+        public ProductsBusiness(CategoriesBusiness categories)
         {
+
+            this.categories = categories;
+
             productsDTO = productsRepository.Load();
             
         }
@@ -37,12 +42,23 @@ namespace IESUX.Business
                     return result;
                 }
             }
+
+            CategoryDTO category = categories.GetById(productDTO.CategoryId);
+            if (category == null)
+            {
+                result.Error = true;
+                result.Message = "Category is not exists";
+                return result;
+            }
+
+
             productsDTO.Items.Add(productDTO);
 
             return productsRepository.Save(productsDTO);
         }
         public ResultDTO Edit(ProductDTO productDTO)
-        {
+        {            
+            //TODO: Checkers here 
             for ( int i = 0; i < productsDTO.Items.Count; i++)
             {
                 if (productsDTO.Items[i].Id == productDTO.Id)

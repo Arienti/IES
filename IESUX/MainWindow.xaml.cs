@@ -22,11 +22,27 @@ namespace IESUX
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ProductsBusiness products = new ProductsBusiness();
+        private ProductsBusiness products = null;
+        private CategoriesBusiness categories = new CategoriesBusiness();
         public MainWindow()
         {
+            products = new ProductsBusiness(categories);
+
+
             InitializeComponent();
 
+            //test -----------
+            CategoryDTO category = new CategoryDTO();
+            category.Id = 1;
+            category.Name = "First";
+            categories.Add(category);
+
+            category = new CategoryDTO();
+            category.Id = 2;
+            category.Name = "Second";
+            categories.Add(category);
+
+            //----------------
 
             GridView gridView = new GridView(); 
             ProductsListView.View = gridView;
@@ -36,6 +52,13 @@ namespace IESUX
                 Header = "Id",
                 DisplayMemberBinding = new Binding("Id")
             });
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Category Id",
+                DisplayMemberBinding = new Binding("CategoryId")
+            });
+
 
             gridView.Columns.Add(new GridViewColumn
             {
@@ -76,16 +99,21 @@ namespace IESUX
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
-            GridView gridView= new GridView();
-            
-            foreach (ProductDTO product in ProductsListView.Items)
-            {
-                pruductDialogWindow.ID.Text = product.Id.ToString();
-                pruductDialogWindow.Description.Text = product.Description.ToString();
-                pruductDialogWindow.Cost.Text = product.Cost.ToString();
+            pruductDialogWindow.AddMode = false;
+            pruductDialogWindow.ID.IsReadOnly = true;
+            pruductDialogWindow.Owner = this;
 
+            GridView gridView= new GridView();
+
+            ProductDTO product = ProductsListView.SelectedItem as ProductDTO;
+            pruductDialogWindow.ID.Text = product.Id.ToString();
+            pruductDialogWindow.Description.Text = product.Description.ToString();
+            pruductDialogWindow.Cost.Text = product.Cost.ToString();
+            
+            if (pruductDialogWindow.ShowDialog() == true)
+            {
+                RefreshProductsList();
             }
-            pruductDialogWindow.ShowDialog();
         }
     }
 }

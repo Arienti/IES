@@ -9,30 +9,29 @@ using System.Threading.Tasks;
 
 namespace IESUX.Repository
 {
-   public class ProductsRepository
+    class CategoriesRepository
     {
-        public ProductsDTO Load()
+        public List<CategoryDTO> Load()
         {
-            if ( File.Exists("ProductsDto.Json"))
+            if (File.Exists("CategoriesDto.Json"))
             {
-                return JsonConvert.DeserializeObject<ProductsDTO>(File.ReadAllText("ProductsDto.Json"));
+                return JsonConvert.DeserializeObject<List<CategoryDTO>>(File.ReadAllText("CategoriesDto.Json"));
             }
             else
             {
-                ProductsDTO result = new ProductsDTO();
-                result.Items = new List<ProductDTO>();
+                List<CategoryDTO> result = new List<CategoryDTO>();                
                 return result;
             }
         }
-        public ResultDTO Save(ProductsDTO productsDTO)
+        public ResultDTO Save(List<CategoryDTO> categories)
         {
             ResultDTO result = new ResultDTO();
             try
             {
-                string productsJson = JsonConvert.SerializeObject(productsDTO);
-                File.WriteAllText("ProductsDto.Json", productsJson);
+                string categoriesJson = JsonConvert.SerializeObject(categories);
+                File.WriteAllText("CategoriesDto.Json", categoriesJson);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result.Error = true;
                 result.Message = e.Message;

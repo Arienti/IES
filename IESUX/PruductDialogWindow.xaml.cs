@@ -23,6 +23,8 @@ namespace IESUX
     {
         private ProductsBusiness products;
 
+        public bool AddMode = true;
+
         public PruductDialogWindow(ProductsBusiness products)
         {
             this.products = products;
@@ -40,7 +42,7 @@ namespace IESUX
             ProductDTO product = new ProductDTO();
             try
             {
-                product.Id = int.Parse(ID.Text);
+                product.Id = int.Parse(ID.Text);                
                 product.Description = Description.Text;
                 product.Cost = float.Parse(Cost.Text);
             }
@@ -50,7 +52,15 @@ namespace IESUX
                 return;
             }
 
-            ResultDTO result = products.Add(product);
+            ResultDTO result = new ResultDTO();
+            if (AddMode)
+            {
+                result = products.Add(product);
+            }
+            else
+            {
+                result = products.Edit(product);
+            }
 
             if (result.Error == true)
             {
@@ -61,6 +71,7 @@ namespace IESUX
                 this.DialogResult = true;
                 Close();
             }
+
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
