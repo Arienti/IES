@@ -17,17 +17,18 @@ using System.Windows.Shapes;
 namespace IESUX
 {
     /// <summary>
-    /// Interaction logic for PruductDialogWindow.xaml
+    /// Interaction logic for CategoryWindow.xaml
     /// </summary>
-    public partial class PruductDialogWindow : Window
+   
+    public partial class CategoryWindow : Window
     {
-        private ProductsBusiness products;
+        private CategoriesBusiness categories;
 
         public bool AddMode = true;
 
-        public PruductDialogWindow(ProductsBusiness products)
+        public CategoryWindow(CategoriesBusiness categories)
         {
-            this.products = products;
+            this.categories = categories;
             InitializeComponent();
         }
 
@@ -39,27 +40,26 @@ namespace IESUX
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-            ProductDTO product = new ProductDTO();
+            CategoryDTO category = new CategoryDTO();
+
             try
             {
-                product.Id = int.Parse(ID.Text);                
-                product.Description = Description.Text;
-                product.Cost = float.Parse(Cost.Text);
+                category.CategoryId = int.Parse(CategoryID.Text);
+                category.CategoryName = CategoryName.Text;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Error.Text = exception.Message;
                 return;
             }
-
             ResultDTO result = new ResultDTO();
             if (AddMode)
             {
-                result = products.Add(product);
+                result = categories.Add(category);
             }
             else
             {
-                result = products.Edit(product);
+                result = categories.Edit(category);
             }
 
             if (result.Error == true)
@@ -80,10 +80,10 @@ namespace IESUX
                 OKButton_Click(null, null);
             }
             else
-            if (e.Key == Key.Escape)
+           if (e.Key == Key.Escape)
             {
                 CancelButton_Click(null, null);
-            }    
+            }
         }
     }
 }

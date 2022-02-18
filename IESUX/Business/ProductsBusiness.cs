@@ -50,8 +50,6 @@ namespace IESUX.Business
                 result.Message = "Category is not exists";
                 return result;
             }
-
-
             productsDTO.Items.Add(productDTO);
 
             return productsRepository.Save(productsDTO);

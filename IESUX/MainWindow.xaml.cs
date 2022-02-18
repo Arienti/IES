@@ -1,5 +1,6 @@
 ﻿using IESUX.Business;
 using IESUX.Models;
+using IESUX.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static IESUX.MainWindow;
 
 namespace IESUX
 {
@@ -24,41 +26,47 @@ namespace IESUX
     {
         private ProductsBusiness products = null;
         private CategoriesBusiness categories = new CategoriesBusiness();
+    
         public MainWindow()
         {
-            products = new ProductsBusiness(categories);
-
-
+            products = new ProductsBusiness(categories);;
             InitializeComponent();
 
             //test -----------
-            CategoryDTO category = new CategoryDTO();
-            category.Id = 1;
-            category.Name = "First";
-            categories.Add(category);
+            /* CategoryDTO category = new CategoryDTO();
+             category.Id = 1;
+             category.Name = "First";
+             categories.Add(category);
+             category = new CategoryDTO();
+             category.Id = 5;
+             category.Name = "Second";
+             categories.Add(category);
 
-            category = new CategoryDTO();
-            category.Id = 2;
-            category.Name = "Second";
-            categories.Add(category);
-
+             category = new CategoryDTO();
+             category.Id = 1;
+             category.Name = "Second";
+             categories.Add(category);
+            */
             //----------------
 
-            GridView gridView = new GridView(); 
+            GridView gridView = new GridView();
             ProductsListView.View = gridView;
-  
-            gridView.Columns.Add(new GridViewColumn
-            {
-                Header = "Id",
-                DisplayMemberBinding = new Binding("Id")
-            });
-
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "Category Id",
                 DisplayMemberBinding = new Binding("CategoryId")
             });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Name",
+                DisplayMemberBinding = new Binding("CategoryName")
+            });
 
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Id",
+                DisplayMemberBinding = new Binding("Id")
+            });
 
             gridView.Columns.Add(new GridViewColumn
             {
@@ -72,18 +80,27 @@ namespace IESUX
                 DisplayMemberBinding = new Binding("Cost")
             });
 
-            RefreshProductsList();
+            RefreshCategoryList();
+          //  RefreshProductsList();
         }
-
         private void RefreshProductsList()
         {
             ProductsDTO productsDTO = products.Get();
 
             ProductsListView.Items.Clear();
 
-            foreach (ProductDTO product in productsDTO.Items)
+         foreach (ProductDTO product in productsDTO.Items)
+           {
+            ProductsListView.Items.Add(product);
+           }
+        }
+        private void RefreshCategoryList()
+        {
+            List<CategoryDTO> categoriesDTO = categories.Get();
+            ProductsListView.Items.Clear();        
+            foreach (CategoryDTO category in categoriesDTO)
             {
-                ProductsListView.Items.Add(product);
+                ProductsListView.Items.Add(category);
             }
         }
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
@@ -103,17 +120,50 @@ namespace IESUX
             pruductDialogWindow.ID.IsReadOnly = true;
             pruductDialogWindow.Owner = this;
 
-            GridView gridView= new GridView();
+           // GridView gridView = new GridView();
 
             ProductDTO product = ProductsListView.SelectedItem as ProductDTO;
             pruductDialogWindow.ID.Text = product.Id.ToString();
             pruductDialogWindow.Description.Text = product.Description.ToString();
             pruductDialogWindow.Cost.Text = product.Cost.ToString();
-            
+
             if (pruductDialogWindow.ShowDialog() == true)
             {
                 RefreshProductsList();
             }
+        }
+        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow(categories);
+            categoryWindow.Owner = this;
+
+            if (categoryWindow.ShowDialog() == true)
+            {
+               RefreshCategoryList();
+            }
+        }
+
+        private void EditCategory_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow(categories);
+            categoryWindow.AddMode = false;
+            categoryWindow.CategoryID.IsReadOnly = true;
+            categoryWindow.Owner = this;
+
+            // GridView gridView = new GridView();
+
+            CategoryDTO categoryDTO = ProductsListView.SelectedItem as CategoryDTO;
+            categoryWindow.CategoryID.Text = categoryDTO.CategoryId.ToString();
+            categoryWindow.CategoryName.Text = categoryDTO.CategoryName.ToString();
+           
+            if (categoryWindow.ShowDialog() == true)
+            {
+                RefreshCategoryList();
+            }
+        }
+        private void DeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshCategoryList();
         }
     }
 }

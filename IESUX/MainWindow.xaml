@@ -12,17 +12,22 @@
             <RowDefinition Height="204*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-          <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
+            <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
             <Button x:Name="Edit" Content="Edit" Width="100" HorizontalAlignment="Left" Click="Edit_Click"></Button>
+            <Button x:Name="AddCategoryButton" Content="Add Category" Width="100" HorizontalAlignment="Left" Click="AddCategoryButton_Click"></Button>
+            <Button x:Name="EditCategory" Content="Edit Category" Width="100" HorizontalAlignment="Left" Click="EditCategory_Click"/>
+            <Button x:Name="DeleteCategory" Content="Delete Category" Width="100" HorizontalAlignment="Left" Click="DeleteCategory_Click"/>
         </StackPanel>
 
         <ListView x:Name="ProductsListView" Grid.Row="1">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}" Width="AUTO" />
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
-                    <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="AUTO" />
+                    <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="Auto" />
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="AUTO"/>
                     <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="AUTO"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="AUTO"/>
                 </GridView>
             </ListView.View>
         </ListView>

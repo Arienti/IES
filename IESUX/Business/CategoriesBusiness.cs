@@ -28,7 +28,7 @@ namespace IESUX.Business
         {
             foreach (CategoryDTO category in categories)
             {
-                if (category.Id == Id)
+                if (category.CategoryId == Id)
                 {
                     return category;
                 }
@@ -40,23 +40,34 @@ namespace IESUX.Business
         public ResultDTO Add(CategoryDTO categoryDTO)
         {
             ResultDTO resultDTO = new ResultDTO();
+            foreach (CategoryDTO currentCategory in categories)
+            {
+                if (currentCategory.CategoryId == categoryDTO.CategoryId)
+                {
+                    resultDTO.Error = true;
+                    resultDTO.Message = "ID is existing";
+                    return resultDTO;
+                }
+            }
             categories.Add(categoryDTO);
             return categoriesRepository.Save(categories);
         }
-
-        public ResultDTO Edit(CategoryDTO categoryDTO)
+        public ResultDTO Edit(CategoryDTO categoriesDTO)
         {
+            //TODO: Checkers here 
+            for (int i = 0; i < categories.Count; i++)
+            {
+                if (categories[i].CategoryId == categoriesDTO.CategoryId)
+                {
+                    categories[i] = categoriesDTO;
+                    return categoriesRepository.Save(categories);
+                }
+            }
             ResultDTO resultDTO = new ResultDTO();
-            //TODO: Edit exist category 
-            return categoriesRepository.Save(categories);
-
-        }
-
-        public ResultDTO Delete(CategoryDTO categoryDTO)
-        {
-            ResultDTO resultDTO = new ResultDTO();
-            //TODO: Delete exist category 
-            return categoriesRepository.Save(categories);
+            resultDTO.Error = true;
+            resultDTO.Message = "Category does not exist";
+            return resultDTO;
         }
     }
 }
+
