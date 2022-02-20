@@ -22,7 +22,6 @@ namespace IESUX
     public partial class PruductDialogWindow : Window
     {
         private ProductsBusiness products;
-        private CategoriesBusiness categories = new CategoriesBusiness();
         public bool AddMode = true;
 
         public PruductDialogWindow(ProductsBusiness products)

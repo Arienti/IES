@@ -81,7 +81,7 @@ namespace IESUX
             });
 
             RefreshCategoryList();
-            RefreshProductsList();
+           // RefreshProductsList();
         }
         private void RefreshProductsList()
         {
@@ -97,12 +97,15 @@ namespace IESUX
         private void RefreshCategoryList()
         {
             List<CategoryDTO> categoriesDTO = categories.Get();
-            ProductsListView.Items.Clear();        
+            ProductsListView.Items.Clear();
+            
             foreach (CategoryDTO category in categoriesDTO)
             {
                 ProductsListView.Items.Add(category);
             }
+           
         }
+       
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -124,6 +127,7 @@ namespace IESUX
         {
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
             pruductDialogWindow.AddMode = false;
+            pruductDialogWindow.Title = "Edit Product";
             pruductDialogWindow.ID.IsReadOnly = true;
             pruductDialogWindow.Owner = this;
 
@@ -138,7 +142,7 @@ namespace IESUX
             pruductDialogWindow.ID.Text = product.Id.ToString();
             pruductDialogWindow.Description.Text = product.Description.ToString();
             pruductDialogWindow.Cost.Text = product.Cost.ToString();
-
+            
             if (pruductDialogWindow.ShowDialog() == true)
             {
                 RefreshProductsList();
@@ -147,6 +151,7 @@ namespace IESUX
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow(categories);
+            categoryWindow.Title = "Add Category";
             categoryWindow.Owner = this;
 
             if (categoryWindow.ShowDialog() == true)
@@ -158,9 +163,12 @@ namespace IESUX
         private void EditCategory_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow(categories);
+            categoryWindow.Owner = this;
+            categoryWindow.Title = "Edit Category";
+            
             categoryWindow.AddMode = false;
             categoryWindow.CategoryID.IsReadOnly = true;
-            categoryWindow.Owner = this;
+            
 
             CategoryDTO categoryDTO = ProductsListView.SelectedItem as CategoryDTO;
             categoryWindow.CategoryID.Text = categoryDTO.CategoryId.ToString();

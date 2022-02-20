@@ -22,9 +22,9 @@
         <ListView x:Name="ProductsListView" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}" Width="AUTO" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}" Width="AUTO"/>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
-                    <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="Auto" />
+                    <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="Auto"  />
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="AUTO"/>
                     <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="AUTO"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="AUTO"/>

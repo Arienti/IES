@@ -40,43 +40,55 @@ namespace IESUX.Business
         public ResultDTO Add(CategoryDTO categoryDTO)
         {
             ResultDTO resultDTO = new ResultDTO();
+            
+            if (string.IsNullOrEmpty(categoryDTO.CategoryName))
+            {
+                resultDTO.Error = true;
+                resultDTO.Message = "Please type the Name of category";
+                return resultDTO;
+            }
             foreach (CategoryDTO currentCategory in categories)
             {
-                if (currentCategory.CategoryId == categoryDTO.CategoryId)
+                if (currentCategory.CategoryId == categoryDTO.CategoryId )
                 {
                     resultDTO.Error = true;
                     resultDTO.Message = "ID is existing";
                     return resultDTO;
                 }
+               if (currentCategory.CategoryName == categoryDTO.CategoryName)
+                {
+                    resultDTO.Error = true;
+                    resultDTO.Message = "Category is existing please change name";
+                    return resultDTO;
+                }
+               
             }
             categories.Add(categoryDTO);
             return categoriesRepository.Save(categories);
         }
         public ResultDTO Edit(CategoryDTO categoriesDTO)
         {
+            ResultDTO resultDTO = new ResultDTO();
+            if (string.IsNullOrEmpty(categoriesDTO.CategoryName))
+            {
+                resultDTO.Error = true;
+                resultDTO.Message = "Please type the Name of category";
+                return resultDTO;
+            }
             //TODO: Checkers here 
             for (int i = 0; i < categories.Count; i++)
             {
-                if (categories[i].CategoryId == categoriesDTO.CategoryId)
+                if (categories[i].CategoryId == categoriesDTO.CategoryId || categories[i].CategoryName == categoriesDTO.CategoryName)
                 {
                     categories[i] = categoriesDTO;
                     return categoriesRepository.Save(categories);
                 }
             }
-            ResultDTO resultDTO = new ResultDTO();
+           
             resultDTO.Error = true;
             resultDTO.Message = "Category does not exist";
             return resultDTO;
         }
-        /* public List<CategoryDTO> Delete()
-         {
-             CategoryDTO categoryDTO = new CategoryDTO();
-             for (int i= 1; i > categories.Count;i--)
-             categories[i] = categoryDTO;
-
-             return categoriesRepository.Save(categoryDTO);
-         */
-     
     }
 }
 

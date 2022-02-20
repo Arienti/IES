@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IESUX"
         mc:Ignorable="d"
-        Title="New product" Height="550" Width="350" ResizeMode="NoResize" Background="#FFF6F6F6" PreviewKeyDown="Window_PreviewKeyDown" WindowStartupLocation="CenterOwner">
+        Title="Add New product" Height="550" Width="350" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown" WindowStartupLocation="CenterOwner">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF82B1EA" Offset="0.226"/>
+            <GradientStop Color="#FFB1DCE0" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid x:Name="GridView" Margin="10">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF82B1EA" Offset="0.226"/>
+                <GradientStop Color="#FFB1DCE0" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
             <RowDefinition Height="80"/>
@@ -16,8 +28,7 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="2">
-            <TextBlock Text="You can add new product here" FontWeight="Bold" Margin="0,5"/>
-            <TextBlock TextWrapping="WrapWithOverflow" Text="Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. "  />
+            <TextBlock TextWrapping="WrapWithOverflow" Text="Please fill the fields with data of product."  />
         </StackPanel>
 
         <TextBlock  Grid.Row="1" Text="Product ID" VerticalAlignment="Top" FontWeight="Bold" Height="16" Grid.Column="1" Margin="106,12,114,0" HorizontalAlignment="Center"/>
@@ -38,7 +49,7 @@
             <Button x:Name="CancelButton" Content="Cancel" Width="100" Click="CancelButton_Click"/>
 
         </StackPanel>
-        <ComboBox x:Name="categoryList" Margin="41,0,55,40" Grid.Row="4" VerticalAlignment="Bottom" SelectedItem="{Binding Path=category}" DisplayMemberPath="CategoryName"/>
+        <ComboBox x:Name="categoryList" Margin="41,18,55,40" Grid.Row="4" SelectedItem="{Binding Path=category}" DisplayMemberPath="CategoryName" HorizontalContentAlignment="Stretch" />
 
     </Grid>
 </Window>

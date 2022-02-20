@@ -49,7 +49,7 @@ namespace IESUX
             }
             catch (Exception exception)
             {
-                Error.Text = exception.Message;
+                CategoryIdError.Text = exception.Message;
                 return;
             }
             ResultDTO result = new ResultDTO();
@@ -64,7 +64,7 @@ namespace IESUX
 
             if (result.Error == true)
             {
-                Error.Text = result.Message;
+                CategoryNameError.Text = result.Message;
             }
             else
             {
