@@ -19,7 +19,7 @@ namespace IESUX.Repository
             }
             else
             {
-                List<CategoryDTO> result = new List<CategoryDTO>();                
+                List<CategoryDTO> result = new List<CategoryDTO>();
                 return result;
             }
         }

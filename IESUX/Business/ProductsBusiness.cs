@@ -27,12 +27,13 @@ namespace IESUX.Business
         public ResultDTO Add(ProductDTO productDTO)
         {
             ResultDTO result = new ResultDTO();
-            if ( string.IsNullOrEmpty(productDTO.Description))
+            if (string.IsNullOrEmpty(productDTO.Description))
             {
                 result.Error = true;
                 result.Message = "Description must be not empty";
                 return result;
             }
+
             foreach (ProductDTO currentProduct in productsDTO.Items)
             {
                 if (currentProduct.Id == productDTO.Id)
@@ -42,18 +43,17 @@ namespace IESUX.Business
                     return result;
                 }
             }
+                CategoryDTO category = categories.GetById(productDTO.CategoryId);
+                if (category == null)
+                {
+                    result.Error = true;
+                    result.Message = "Category is not exists";
+                    return result;
+                }
+                productsDTO.Items.Add(productDTO);
 
-            CategoryDTO category = categories.GetById(productDTO.CategoryId);
-            if (category == null)
-            {
-                result.Error = true;
-                result.Message = "Category is not exists";
-                return result;
+                return productsRepository.Save(productsDTO);
             }
-            productsDTO.Items.Add(productDTO);
-
-            return productsRepository.Save(productsDTO);
-        }
         public ResultDTO Edit(ProductDTO productDTO)
         {            
             //TODO: Checkers here 

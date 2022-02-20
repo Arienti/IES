@@ -81,7 +81,7 @@ namespace IESUX
             });
 
             RefreshCategoryList();
-          //  RefreshProductsList();
+            RefreshProductsList();
         }
         private void RefreshProductsList()
         {
@@ -105,8 +105,15 @@ namespace IESUX
         }
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
+
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
             pruductDialogWindow.Owner = this;
+            List<CategoryDTO> categoriesDTO = categories.Get();
+            pruductDialogWindow.categoryList.Items.Clear();
+            foreach (CategoryDTO category in categoriesDTO)
+            {
+                pruductDialogWindow.categoryList.Items.Add(category);
+            }
 
             if (pruductDialogWindow.ShowDialog() == true)
             {
@@ -120,7 +127,12 @@ namespace IESUX
             pruductDialogWindow.ID.IsReadOnly = true;
             pruductDialogWindow.Owner = this;
 
-           // GridView gridView = new GridView();
+            List<CategoryDTO> categoriesDTO = categories.Get();
+            pruductDialogWindow.categoryList.Items.Clear();
+            foreach (CategoryDTO category in categoriesDTO)
+            {
+                pruductDialogWindow.categoryList.Items.Add(category);
+            }
 
             ProductDTO product = ProductsListView.SelectedItem as ProductDTO;
             pruductDialogWindow.ID.Text = product.Id.ToString();
@@ -150,20 +162,15 @@ namespace IESUX
             categoryWindow.CategoryID.IsReadOnly = true;
             categoryWindow.Owner = this;
 
-            // GridView gridView = new GridView();
-
             CategoryDTO categoryDTO = ProductsListView.SelectedItem as CategoryDTO;
             categoryWindow.CategoryID.Text = categoryDTO.CategoryId.ToString();
             categoryWindow.CategoryName.Text = categoryDTO.CategoryName.ToString();
-           
+
             if (categoryWindow.ShowDialog() == true)
             {
                 RefreshCategoryList();
             }
-        }
-        private void DeleteCategory_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshCategoryList();
+       
         }
     }
 }

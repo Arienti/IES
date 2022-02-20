@@ -5,42 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IESUX"
         mc:Ignorable="d"
-        Title="New product" Height="350" Width="600" ResizeMode="NoResize" Background="#FFF6F6F6" PreviewKeyDown="Window_PreviewKeyDown" WindowStartupLocation="CenterOwner">
-    <Grid Margin="10">
+        Title="New product" Height="550" Width="350" ResizeMode="NoResize" Background="#FFF6F6F6" PreviewKeyDown="Window_PreviewKeyDown" WindowStartupLocation="CenterOwner">
+    <Grid x:Name="GridView" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="50*"/>
-        </Grid.ColumnDefinitions>
-
         <StackPanel Grid.ColumnSpan="2">
             <TextBlock Text="You can add new product here" FontWeight="Bold" Margin="0,5"/>
             <TextBlock TextWrapping="WrapWithOverflow" Text="Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. Please fill the fields with data of product. "  />
         </StackPanel>
 
-        <TextBlock  Grid.Row="1" Text="ID" VerticalAlignment="Center" FontWeight="Bold"/>
-        <TextBlock Grid.Row="2" Text="Description" VerticalAlignment="Center" FontWeight="Bold"/>
-        <TextBlock Grid.Row="3" Text="Cost" VerticalAlignment="Center" FontWeight="Bold"/>
-        
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ID" Height="25"/>
-        
-        <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Height="25" />
-        <TextBox x:Name="Cost" Grid.Row="3" Grid.Column="1" Height="25" />
+        <TextBlock  Grid.Row="1" Text="Product ID" VerticalAlignment="Top" FontWeight="Bold" Height="16" Grid.Column="1" Margin="106,12,114,0" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="Description" FontWeight="Bold" Margin="119,10,0,54" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="3" Text="Cost" VerticalAlignment="Top" FontWeight="Bold" Height="16" Grid.Column="1" Margin="101,7,119,0" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Text="Select Category" FontWeight="Bold" Margin="0,0,0,64" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ID" Margin="0,28,0,32" HorizontalAlignment="Stretch"/>
 
-        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" x:Name="Error" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#FFC40C0C"/>
+        <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Margin="0,28,0,32" />
+        <TextBox x:Name="Cost" Grid.Row="3" Grid.Column="1" Margin="0,28,0,32" />
 
-        <StackPanel Grid.Column="1" Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <TextBlock Grid.Row="1" x:Name="IDError" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FFC40C0C" Height="16" Margin="0,54,0,0"/>
+        <TextBlock Grid.Row="2" x:Name="DescriptionError" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FFC40C0C" Height="16" Margin="-4,0,4,10"/>
+        <TextBlock Grid.Row="3" x:Name="CostError" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FFC40C0C" Height="16" Margin="-4,0,4,10"/>
+        <TextBlock Grid.Row="4" x:Name="CategoryError" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FFC40C0C" Height="16" Margin="-4,0,4,10"/>
+        <StackPanel Grid.Column="1" Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Margin="65,0,0,0" Width="210">
             <Button x:Name="OKButton" Content="OK" Width="100" Margin="5,0" Click="OKButton_Click"/>
             <Button x:Name="CancelButton" Content="Cancel" Width="100" Click="CancelButton_Click"/>
 
         </StackPanel>
+        <ComboBox x:Name="categoryList" Margin="41,0,55,40" Grid.Row="4" VerticalAlignment="Bottom" SelectedItem="{Binding Path=category}" DisplayMemberPath="CategoryName"/>
 
     </Grid>
 </Window>

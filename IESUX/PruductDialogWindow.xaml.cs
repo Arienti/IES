@@ -22,12 +22,12 @@ namespace IESUX
     public partial class PruductDialogWindow : Window
     {
         private ProductsBusiness products;
-
+        private CategoriesBusiness categories = new CategoriesBusiness();
         public bool AddMode = true;
 
         public PruductDialogWindow(ProductsBusiness products)
         {
-            this.products = products;
+            this.products = products;          
             InitializeComponent();
         }
 
@@ -42,17 +42,17 @@ namespace IESUX
             ProductDTO product = new ProductDTO();
             try
             {
-                product.Id = int.Parse(ID.Text);                
+                product.Id = int.Parse(ID.Text);
                 product.Description = Description.Text;
                 product.Cost = float.Parse(Cost.Text);
+               // ResultDTO resultDTO = products.Add(product);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
-                Error.Text = exception.Message;
+                IDError.Text = exception.Message;
                 return;
             }
-
-            ResultDTO result = new ResultDTO();
+            ResultDTO result = products.Add(product);
             if (AddMode)
             {
                 result = products.Add(product);
@@ -64,7 +64,7 @@ namespace IESUX
 
             if (result.Error == true)
             {
-                Error.Text = result.Message;
+                CategoryError.Text = result.Message;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace IESUX
             if (e.Key == Key.Escape)
             {
                 CancelButton_Click(null, null);
-            }    
+            }
         }
     }
 }
