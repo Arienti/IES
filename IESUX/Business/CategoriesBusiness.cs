@@ -78,13 +78,12 @@ namespace IESUX.Business
             //TODO: Checkers here 
             for (int i = 0; i < categories.Count; i++)
             {
-                if (categories[i].CategoryId == categoriesDTO.CategoryId || categories[i].CategoryName == categoriesDTO.CategoryName)
+                if (categories[i].CategoryId == categoriesDTO.CategoryId)
                 {
                     categories[i] = categoriesDTO;
                     return categoriesRepository.Save(categories);
                 }
             }
-           
             resultDTO.Error = true;
             resultDTO.Message = "Category does not exist";
             return resultDTO;
