@@ -88,6 +88,16 @@ namespace IESUX.Business
             resultDTO.Message = "Category does not exist";
             return resultDTO;
         }
+        public ResultDTO Delete(CategoryDTO categoryDTO)
+        {
+            List<CategoryDTO> category = new List<CategoryDTO>();
+            CategoriesRepository categoriesRepository = new CategoriesRepository();
+            foreach (CategoryDTO categories in category)
+            {
+                category.Remove(categories);
+            }
+            return categoriesRepository.Save(categories);
+        }
     }
 }
 
