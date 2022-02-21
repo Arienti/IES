@@ -115,9 +115,8 @@ namespace IESUX
             pruductDialogWindow.categoryList.Items.Clear();
             foreach (CategoryDTO category in categoriesDTO)
             {
-                pruductDialogWindow.categoryList.Items.Add(category);
+                pruductDialogWindow.categoryList.Items.Add(category);  
             }
-
             if (pruductDialogWindow.ShowDialog() == true)
             {
                 RefreshProductsList();
@@ -179,6 +178,19 @@ namespace IESUX
                 RefreshCategoryList();
             }
        
+        }
+
+        private void DeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryDTO category = ProductsListView.SelectedItem as CategoryDTO;
+            ResultDTO resultDTO = categories.Delete(category);
+            List<CategoryDTO> categoryList = new List<CategoryDTO>();
+
+            foreach (CategoryDTO categoryDTO in categoryList)
+            {
+                ProductsListView.Items.Remove(categoryDTO);
+            }
+            RefreshCategoryList();
         }
     }
 }

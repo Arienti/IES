@@ -23,7 +23,6 @@ namespace IESUX
     {
         private ProductsBusiness products;
         public bool AddMode = true;
-
         public PruductDialogWindow(ProductsBusiness products)
         {
             this.products = products;          
