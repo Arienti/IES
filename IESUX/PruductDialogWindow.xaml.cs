@@ -37,12 +37,21 @@ namespace IESUX
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            if (categoryList.SelectedItem == null)
+            {
+                CategoryError.Text = "Please select the category";
+                return;
+            }
+
+            CategoryDTO category = categoryList.SelectedItem as CategoryDTO;
+
             ProductDTO product = new ProductDTO();
             try
             {
                 product.Id = int.Parse(ID.Text);
                 product.Description = Description.Text;
                 product.Cost = float.Parse(Cost.Text);
+                product.CategoryId = category.CategoryId;
                // ResultDTO resultDTO = products.Add(product);
             }
             catch (Exception exception)
@@ -50,7 +59,7 @@ namespace IESUX
                 IDError.Text = exception.Message;
                 return;
             }
-            ResultDTO result = products.Add(product);
+            ResultDTO result = new ResultDTO();
             if (AddMode)
             {
                 result = products.Add(product);
