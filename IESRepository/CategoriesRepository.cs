@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IESUX.Repository
 {
-    class CategoriesRepository
+    public class CategoriesRepository
     {
         public List<CategoryDTO> Load()
         {
