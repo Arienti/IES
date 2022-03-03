@@ -12,7 +12,6 @@ namespace IESUX.Business
     {
         private UsersRepository usersRepository  = new UsersRepository();
         private UsersDTO usersDTO = new UsersDTO();
-
         public UsersBusiness()
         {
             usersDTO = usersRepository.Load();
@@ -42,7 +41,6 @@ namespace IESUX.Business
                 {
                     usersDTO.Clients[i] = userDTO;
                     return usersRepository.Save(usersDTO);
-
                 }
             }
             return false;

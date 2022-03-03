@@ -23,7 +23,6 @@ namespace IESUX
     public partial class CategoryWindow : Window
     {
         private CategoriesBusiness categories;
-
         public bool AddMode = true;
 
         public CategoryWindow(CategoriesBusiness categories)
@@ -61,7 +60,6 @@ namespace IESUX
             {
                 result = categories.Edit(category);
             }
-
             if (result.Error == true)
             {
                 CategoryNameError.Text = result.Message;

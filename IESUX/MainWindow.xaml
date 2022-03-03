@@ -17,14 +17,15 @@
             <Button x:Name="AddCategoryButton" Content="Add Category" Width="100" HorizontalAlignment="Left" Click="AddCategoryButton_Click"></Button>
             <Button x:Name="EditCategory" Content="Edit Category" Width="100" HorizontalAlignment="Left" Click="EditCategory_Click"/>
             <Button x:Name="DeleteCategory" Content="Delete Category" Width="100" HorizontalAlignment="Left" Click="DeleteCategory_Click" />
+            <Button x:Name="DeleteProduct" Content="Delete Product"  Width="100" Click="DeleteProduct_Click"/>
         </StackPanel>
 
-        <ListView x:Name="ProductsListView" Grid.Row="1">
+        <ListView x:Name="ProductsListView" Grid.Row="1" Visibility="Visible">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}" Width="AUTO"/>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
                     <GridViewColumn Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}" Width="Auto"  />
+                    <GridViewColumn Header="Category Name" DisplayMemberBinding="{Binding CategoryName}" Width="AUTO"/>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="AUTO" />
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="AUTO"/>
                     <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="AUTO"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="AUTO"/>

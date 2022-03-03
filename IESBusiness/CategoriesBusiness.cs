@@ -11,19 +11,16 @@ namespace IESUX.Business
     public class CategoriesBusiness
     {
         private List<CategoryDTO> categories = new List<CategoryDTO>();
-
         private CategoriesRepository categoriesRepository = new CategoriesRepository();
 
         public CategoriesBusiness()
         {
             categories = categoriesRepository.Load();
         }
-
         public List<CategoryDTO> Get()
         {
             return categories;
         }
-
         public CategoryDTO GetById(int Id)
         {
             foreach (CategoryDTO category in categories)
@@ -33,14 +30,11 @@ namespace IESUX.Business
                     return category;
                 }
             }
-
             return null;
         }
-
         public ResultDTO Add(CategoryDTO categoryDTO)
         {
             ResultDTO resultDTO = new ResultDTO();
-
             if (string.IsNullOrEmpty(categoryDTO.CategoryName))
             {
                 resultDTO.Error = true;
@@ -61,7 +55,6 @@ namespace IESUX.Business
                     resultDTO.Message = "Category is existing please change name";
                     return resultDTO;
                 }
-
             }
             categories.Add(categoryDTO);
             return categoriesRepository.Save(categories);
@@ -91,9 +84,8 @@ namespace IESUX.Business
         public ResultDTO Delete(CategoryDTO categoryDTO)
         {
             CategoriesRepository categoriesRepository = new CategoriesRepository();
-           
-                categories.Remove(categoryDTO);
-                return categoriesRepository.Save(categories);
+            categories.Remove(categoryDTO);
+            return categoriesRepository.Save(categories);
         }
     }
 }

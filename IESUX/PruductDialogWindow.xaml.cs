@@ -42,7 +42,6 @@ namespace IESUX
                 CategoryError.Text = "Please select the category";
                 return;
             }
-
             CategoryDTO category = categoryList.SelectedItem as CategoryDTO;
 
             ProductDTO product = new ProductDTO();
@@ -68,7 +67,6 @@ namespace IESUX
             {
                 result = products.Edit(product);
             }
-
             if (result.Error == true)
             {
                 CategoryError.Text = result.Message;

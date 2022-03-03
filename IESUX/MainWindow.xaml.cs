@@ -26,10 +26,9 @@ namespace IESUX
     {
         private ProductsBusiness products = null;
         private CategoriesBusiness categories = new CategoriesBusiness();
-    
         public MainWindow()
         {
-            products = new ProductsBusiness(categories);;
+            products = new ProductsBusiness(categories); ;
             InitializeComponent();
 
             //test -----------
@@ -58,7 +57,7 @@ namespace IESUX
             });
             gridView.Columns.Add(new GridViewColumn
             {
-                Header = "Name",
+                Header = "Category Name",
                 DisplayMemberBinding = new Binding("CategoryName")
             });
 
@@ -79,20 +78,18 @@ namespace IESUX
                 Header = "Cost",
                 DisplayMemberBinding = new Binding("Cost")
             });
-
+            RefreshProductsList();
             RefreshCategoryList();
-           // RefreshProductsList();
         }
         private void RefreshProductsList()
         {
             ProductsDTO productsDTO = products.Get();
-
             ProductsListView.Items.Clear();
 
-         foreach (ProductDTO product in productsDTO.Items)
-           {
-            ProductsListView.Items.Add(product);
-           }
+            foreach (ProductDTO product in productsDTO.Items)
+            {
+                ProductsListView.Items.Add(product);
+            }
         }
         private void RefreshCategoryList()
         {
@@ -101,14 +98,11 @@ namespace IESUX
             
             foreach (CategoryDTO category in categoriesDTO)
             {
-                ProductsListView.Items.Add(category);
+             ProductsListView.Items.Add(category);
             }
-           
         }
-       
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
             pruductDialogWindow.Owner = this;
             List<CategoryDTO> categoriesDTO = categories.Get();
@@ -129,7 +123,6 @@ namespace IESUX
             pruductDialogWindow.Title = "Edit Product";
             pruductDialogWindow.ID.IsReadOnly = true;
             pruductDialogWindow.Owner = this;
-
             List<CategoryDTO> categoriesDTO = categories.Get();
             pruductDialogWindow.categoryList.Items.Clear();
             foreach (CategoryDTO category in categoriesDTO)
@@ -138,15 +131,16 @@ namespace IESUX
             }
 
             ProductDTO product = ProductsListView.SelectedItem as ProductDTO;
-            pruductDialogWindow.ID.Text = product.Id.ToString();
-            pruductDialogWindow.Description.Text = product.Description.ToString();
-            pruductDialogWindow.Cost.Text = product.Cost.ToString();
-            
+                pruductDialogWindow.ID.Text = product.Id.ToString();
+                pruductDialogWindow.Description.Text = product.Description.ToString();
+                pruductDialogWindow.Cost.Text = product.Cost.ToString();
+
             if (pruductDialogWindow.ShowDialog() == true)
             {
                 RefreshProductsList();
             }
         }
+        
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow(categories);
@@ -158,7 +152,6 @@ namespace IESUX
                RefreshCategoryList();
             }
         }
-
         private void EditCategory_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow(categories);
@@ -176,21 +169,21 @@ namespace IESUX
             if (categoryWindow.ShowDialog() == true)
             {
                 RefreshCategoryList();
-            }
-       
+            }    
         }
-
         private void DeleteCategory_Click(object sender, RoutedEventArgs e)
         {
             CategoryDTO category = ProductsListView.SelectedItem as CategoryDTO;
             ResultDTO resultDTO = categories.Delete(category);
-            List<CategoryDTO> categoryList = new List<CategoryDTO>();
-
-            foreach (CategoryDTO categoryDTO in categoryList)
-            {
-                ProductsListView.Items.Remove(categoryDTO);
-            }
+            ProductsListView.Items.Remove(category);
             RefreshCategoryList();
+        }
+
+        private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            ProductDTO productDTO = ProductsListView.SelectedItem as ProductDTO;
+            ResultDTO resultDTO = products.Delete(productDTO);
+            RefreshProductsList();
         }
     }
 }

@@ -14,20 +14,18 @@ namespace DemoSimpleHTTPServer
                 Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
                 return;
             }
-            
-
             // Create a listener.
             HttpListener listener = new HttpListener();
             // Add the prefixes.
             
             
-            listener.Prefixes.Add("http://127.0.0.1:888/");
-            
-            listener.Start();
+            listener.Prefixes.Add("http://127.0.0.1:8888/");
+        
+                listener.Start();
                 Console.WriteLine("Listening...");
-
-            CategoriesBusiness categoriesBusiness = new CategoriesBusiness();
-            ProductsBusiness productsBusiness = new ProductsBusiness(categoriesBusiness);
+      
+                CategoriesBusiness categoriesBusiness = new CategoriesBusiness();
+                ProductsBusiness productsBusiness = new ProductsBusiness(categoriesBusiness);
 
 
             while (true)
@@ -42,6 +40,7 @@ namespace DemoSimpleHTTPServer
 
                 string responseString = "<HTML><BODY>Not found</BODY></HTML>";
                 //GET POST PUT DELETE 
+                
                 if (request.RawUrl.Equals("/products"))
                 {
                     responseString = JsonConvert.SerializeObject(productsBusiness.Get());
@@ -51,8 +50,7 @@ namespace DemoSimpleHTTPServer
                 {
                     responseString = JsonConvert.SerializeObject(categoriesBusiness.Get());
                 }
-
-
+                
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.
                 response.ContentLength64 = buffer.Length;
@@ -60,8 +58,9 @@ namespace DemoSimpleHTTPServer
                 output.Write(buffer, 0, buffer.Length);
                 // You must close the output stream.
                 output.Close();
+                //  }
             }
-            listener.Stop();
+              listener.Stop();
         }
     }
 }
