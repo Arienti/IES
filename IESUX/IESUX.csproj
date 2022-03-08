@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="folder.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
@@ -14,6 +18,10 @@
     <ProjectReference Include="..\IESBusiness\IESBusiness.csproj" />
     <ProjectReference Include="..\IESModels\IESModels.csproj" />
     <ProjectReference Include="..\IESRepository\IESRepository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="folder.jpg" />
   </ItemGroup>
 
 </Project>
