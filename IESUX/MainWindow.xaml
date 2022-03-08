@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IESUX"
         mc:Ignorable="d"
-        Title="Inventory Ecosystem" Height="450" Width="800">
+        Title="Inventory Ecosystem" Height="500" Width="850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -13,13 +13,10 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
-            <Button x:Name="Edit" Content="Edit" Width="100" HorizontalAlignment="Left" Click="Edit_Click"></Button>
-            <Button x:Name="AddCategoryButton" Content="Add Category" Width="100" HorizontalAlignment="Left" Click="AddCategoryButton_Click"></Button>
-            <Button x:Name="EditCategory" Content="Edit Category" Width="100" HorizontalAlignment="Left" Click="EditCategory_Click"/>
-            <Button x:Name="DeleteCategory" Content="Delete Category" Width="100" HorizontalAlignment="Left" Click="DeleteCategory_Click" />
             <Button x:Name="DeleteProduct" Content="Delete Product"  Width="100" Click="DeleteProduct_Click"/>
+            <Button x:Name="Products" Content="Products"  Width="100" Click="Products_Click"/>
         </StackPanel>
-
+        <Frame x:Name="Main" Grid.Row="1"/>
         <ListView x:Name="ProductsListView" Grid.Row="1" Visibility="Visible">
             <ListView.View>
                 <GridView>

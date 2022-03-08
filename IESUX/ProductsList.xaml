@@ -1,0 +1,93 @@
+﻿<Page x:Class="IESUX.ProductsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IESUX"
+      mc:Ignorable="d" Background="OrangeRed"
+      Title="ProductsList" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="41*" />
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Column="1" Cursor="SizeWE" />
+        <DataGrid x:Name="productList" ColumnWidth="*"  RowHeight="30" RowBackground="#FF82B1EA" FontWeight="Bold" Foreground="Black" FontSize="16" AlternatingRowBackground="#FFB1DCE0" BorderBrush="White" BorderThickness="5" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" Background="#FF82B1EA" Grid.Column="1" HeadersVisibility="All" CanUserSortColumns="False">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="ItemsControl.Background" Value="#FFFFFBA8"/>
+                    <Setter  Property="BorderThickness"  Value="1"/>
+                    <Setter Property="BorderBrush" Value="black"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"  Binding="{Binding Id}" IsReadOnly="True" MinWidth="25" SortDirection="Ascending">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Barcode"  IsReadOnly="False" />
+                <DataGridTextColumn Header="Cost" Binding="{Binding Cost}"  Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Cost}" Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Total price" Binding="{Binding Cost}" Width="auto" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image x:Name="Image" Width="80"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Edit" Content="Edit" MinWidth="80" MinHeight="25" Click="Edit_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF1E6CC9" Offset="1"/>
+                                        <GradientStop Color="#FF44AEE0" Offset="0.5"/>
+                                        <GradientStop Color="#FF2E8DFF" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Delete" Content="Delete" Click="Delete_Click" >
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="OrangeRed" Offset="1"/>
+                                        <GradientStop Color="#FFFDAF92" Offset="0.5"/>
+                                        <GradientStop Color="OrangeRed" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add Product" Name="AddPRoduct" HorizontalAlignment="Right" Margin="10" Grid.Row="1" VerticalAlignment="Center" BorderBrush="Black" BorderThickness="2"  FontSize="16"  Width="150" Height="40" FontWeight="Bold" FontStyle="Normal" Grid.Column="1" Click="AddProduct_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1E6CC9" Offset="1"/>
+                    <GradientStop Color="#FFB1DCE0" Offset="0.5"/>
+                    <GradientStop Color="#FF2E8DFF" Offset="0"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <DataGrid x:Name="categoryList" Grid.Column="0" ColumnWidth="*"  RowBackground="#FF82B1EA" FontWeight="Bold" Foreground="Black"  AlternatingRowBackground="#FFB1DCE0" BorderBrush="White" BorderThickness="5" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" Background="#FF82B1EA" HeadersVisibility="All" CanUserSortColumns="False" >
+            <DataGridTextColumn Header="Category" IsReadOnly="True" />
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\Seven7\Desktop\folder.jpg>"/>
+                    <TextBlock Text="{Binding CategoryName}"/>
+                </StackPanel>
+            </DataTemplate>
+        </DataGrid>
+    </Grid>
+</Page>

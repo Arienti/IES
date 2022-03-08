@@ -1,0 +1,34 @@
+﻿<Page x:Class="IESUX.CategoriesList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IESUX"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CategoriesList">
+    <StackPanel Orientation="Vertical">
+        <Frame x:Name="Main" Grid.Row="1"/>
+        <Button Content="Add Category" x:Name="AddCategory" Height="30" Width="Auto" Margin="700,0,50,0" Click="AddCategory_Click" />
+        <DataGrid x:Name="dataGrid"  RowBackground="#FF82B1EA" FontWeight="Bold" Foreground="Black" AlternatingRowBackground="#FFB1DCE0" BorderBrush="#FFB1DCE0" BorderThickness="1" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" Background="#FF82B1EA" Height="425" Width="800" MouseDoubleClick="dataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding CategoryId}" IsReadOnly="True" MinWidth="25"/>
+                <DataGridTextColumn Header="Category Name" Binding="{Binding CategoryName}" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Edit" Content="Edit"  Background="#FF2E8DFF" Click="Edit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Delete" Content="Delete"  Background="#FF2E8DFF" Click="Delete_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>

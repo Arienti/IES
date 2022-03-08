@@ -79,7 +79,6 @@ namespace IESUX
                 DisplayMemberBinding = new Binding("Cost")
             });
             RefreshProductsList();
-            RefreshCategoryList();
         }
         private void RefreshProductsList()
         {
@@ -111,11 +110,11 @@ namespace IESUX
             {
                 pruductDialogWindow.categoryList.Items.Add(category);  
             }
-            if (pruductDialogWindow.ShowDialog() == true)
-            {
-                RefreshProductsList();
-            }
-        }
+           // if (pruductDialogWindow.ShowDialog() == true)
+            //{
+              //  RefreshProductsList();
+            //}
+       /* }
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
@@ -129,61 +128,58 @@ namespace IESUX
             {
                 pruductDialogWindow.categoryList.Items.Add(category);
             }
-
+            ProductsList productsList = new ProductsList();
             ProductDTO product = ProductsListView.SelectedItem as ProductDTO;
-                pruductDialogWindow.ID.Text = product.Id.ToString();
-                pruductDialogWindow.Description.Text = product.Description.ToString();
-                pruductDialogWindow.Cost.Text = product.Cost.ToString();
+            pruductDialogWindow.ID.Text = product.Id.ToString();
+            pruductDialogWindow.Description.Text = product.Description.ToString();
+            pruductDialogWindow.Cost.Text = product.Cost.ToString();
 
             if (pruductDialogWindow.ShowDialog() == true)
             {
                 RefreshProductsList();
+
+
+
             }
-        }
-        
-        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryWindow categoryWindow = new CategoryWindow(categories);
-            categoryWindow.Title = "Add Category";
-            categoryWindow.Owner = this;
+            /* private void EditCategory_Click(object sender, RoutedEventArgs e)
+             {
+                 CategoryWindow categoryWindow = new CategoryWindow(categories);
+                 categoryWindow.Owner = this;
+                 categoryWindow.Title = "Edit Category";
 
-            if (categoryWindow.ShowDialog() == true)
-            {
-               RefreshCategoryList();
-            }
-        }
-        private void EditCategory_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryWindow categoryWindow = new CategoryWindow(categories);
-            categoryWindow.Owner = this;
-            categoryWindow.Title = "Edit Category";
-            
-            categoryWindow.AddMode = false;
-            categoryWindow.CategoryID.IsReadOnly = true;
-            
+                 categoryWindow.AddMode = false;
+                 categoryWindow.CategoryID.IsReadOnly = true;
 
-            CategoryDTO categoryDTO = ProductsListView.SelectedItem as CategoryDTO;
-            categoryWindow.CategoryID.Text = categoryDTO.CategoryId.ToString();
-            categoryWindow.CategoryName.Text = categoryDTO.CategoryName.ToString();
 
-            if (categoryWindow.ShowDialog() == true)
-            {
-                RefreshCategoryList();
-            }    
-        }
-        private void DeleteCategory_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryDTO category = ProductsListView.SelectedItem as CategoryDTO;
-            ResultDTO resultDTO = categories.Delete(category);
-            ProductsListView.Items.Remove(category);
-            RefreshCategoryList();
+                 CategoryDTO categoryDTO = ProductsListView.SelectedItem as CategoryDTO;
+                 categoryWindow.CategoryID.Text = categoryDTO.CategoryId.ToString();
+                 categoryWindow.CategoryName.Text = categoryDTO.CategoryName.ToString();
+
+                 if (categoryWindow.ShowDialog() == true)
+                 {
+                     RefreshCategoryList();
+                 }    
+             }
+             private void DeleteCategory_Click(object sender, RoutedEventArgs e)
+             {
+                 CategoryDTO category = ProductsListView.SelectedItem as CategoryDTO;
+                 ResultDTO resultDTO = categories.Delete(category);
+                 ProductsListView.Items.Remove(category);
+                 RefreshCategoryList();
+             }*/
         }
 
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+        {    
+           ProductDTO productDTO = ProductsListView.SelectedItem as ProductDTO;
+           ResultDTO resultDTO = products.Delete(productDTO);
+          RefreshProductsList();
+        }
+        private void Products_Click(object sender, RoutedEventArgs e)
         {
-            ProductDTO productDTO = ProductsListView.SelectedItem as ProductDTO;
-            ResultDTO resultDTO = products.Delete(productDTO);
-            RefreshProductsList();
+            ProductsListView.Visibility = Visibility.Collapsed;
+            Main.Content = new ProductsList();
+
         }
     }
 }
