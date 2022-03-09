@@ -32,7 +32,7 @@ namespace IESUX
         {
             products = new ProductsBusiness(categories);
             InitializeComponent();
-         
+
             /* GridView gridView = new GridView();
              ProductsListView.View = gridView;
 
@@ -53,13 +53,19 @@ namespace IESUX
                  Header = "Cost",
                  DisplayMemberBinding = new Binding("Cost")
              });*/
-            RefreshProductsList();
             RefreshCategoryList();
 
+            List<CategoryDTO> categoriesList = categories.Get();
+            if ((categoriesList != null) && (categoriesList.Count != 0))
+            {
+                RefreshProductsList(categoriesList[0].CategoryId);
+            }
+            
+
         }
-        private void RefreshProductsList()
+        private void RefreshProductsList(int categoryId)
         {
-            ProductsDTO productsDTO = products.Get();
+            ProductsDTO productsDTO = products.GetByCategoryId(categoryId);
             productList.Items.Clear();
             foreach (ProductDTO product in productsDTO.Items)
             {
@@ -70,7 +76,13 @@ namespace IESUX
         {
             ProductDTO productDTO = productList.SelectedItem as ProductDTO;
             ResultDTO resultDTO = products.Delete(productDTO);
-            RefreshProductsList();
+
+            List<CategoryDTO> categoriesList = categories.Get();
+            if ((categoriesList != null) && (categoriesList.Count != 0))
+            {
+                RefreshProductsList(categoriesList[0].CategoryId);
+            }
+
         }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -85,7 +97,12 @@ namespace IESUX
             }
             if (pruductDialogWindow.ShowDialog() == true)
             {
-                RefreshProductsList();
+                List<CategoryDTO> categoriesList = categories.Get();
+                if ((categoriesList != null) && (categoriesList.Count != 0))
+                {
+                    RefreshProductsList(categoriesList[0].CategoryId);
+                }
+
             }
         }
 
@@ -94,7 +111,7 @@ namespace IESUX
             PruductDialogWindow pruductDialogWindow = new PruductDialogWindow(products);
             pruductDialogWindow.AddMode = false;
             pruductDialogWindow.Title = "Edit Product";
-            pruductDialogWindow.ID.IsReadOnly = true;
+            
             //  pruductDialogWindow.Owner = this;
             List<CategoryDTO> categoriesDTO = categories.Get();
             pruductDialogWindow.categoryList.Items.Clear();
@@ -110,7 +127,12 @@ namespace IESUX
 
             if (pruductDialogWindow.ShowDialog() == true)
             {
-                RefreshProductsList();
+                List<CategoryDTO> categoriesList = categories.Get();
+                if ((categoriesList != null) && (categoriesList.Count != 0))
+                {
+                    RefreshProductsList(categoriesList[0].CategoryId);
+                }
+
             }
         }
 
@@ -119,18 +141,35 @@ namespace IESUX
             ProductDTO product = productList.SelectedItem as ProductDTO;
             ResultDTO resultDTO = products.Delete(product);
             ProductsDTO productsDTO = new ProductsDTO();
-           
-            RefreshProductsList();
+
+            List<CategoryDTO> categoriesList = categories.Get();
+            if ((categoriesList != null) && (categoriesList.Count != 0))
+            {
+                RefreshProductsList(categoriesList[0].CategoryId);
+            }
+
         }
         private void RefreshCategoryList()
         {
             List<CategoryDTO> categoriesDTO = categories.Get();
-            categoryList.Items.Clear();
+            categoryList.Children.Clear();
 
             foreach (CategoryDTO category in categoriesDTO)
             {
-                categoryList.Items.Add(category);
+                ListItem listItem = new ListItem();
+                listItem.ItemName.Text = category.CategoryName;
+                listItem.PreviewMouseDown += ListItem_MouseDown;
+                listItem.Tag = category;
+
+                categoryList.Children.Add(listItem);
             }
+        }
+
+        private void ListItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ListItem listItem = sender as ListItem;
+            CategoryDTO category = listItem.Tag as CategoryDTO;
+            RefreshProductsList(category.CategoryId);
         }
     }
 }

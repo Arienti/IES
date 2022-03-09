@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IESUX.Business
 {
-   public class ProductsBusiness
+    public class ProductsBusiness
     {
         private ProductsDTO productsDTO = new ProductsDTO();
         private ProductsRepository productsRepository = new ProductsRepository();
@@ -28,6 +28,7 @@ namespace IESUX.Business
                 result.Message = "Description must be not empty";
                 return result;
             }
+            /*
             foreach (ProductDTO currentProduct in productsDTO.Items)
             {
                 if (currentProduct.Id == productDTO.Id)
@@ -37,20 +38,35 @@ namespace IESUX.Business
                     return result;
                 }
             }
-                CategoryDTO category = categories.GetById(productDTO.CategoryId);
-                if (category == null)
+            */
+
+            int tempId = productsDTO.Items.Count + 1;
+
+            while (true)
+            {
+                if (GetById(tempId).Items.Count == 0)
                 {
-                    result.Error = true;
-                    result.Message = "Category is not exists";
-                    return result;
+                    break;
                 }
-                productsDTO.Items.Add(productDTO);
-                return productsRepository.Save(productsDTO);
+                tempId++;
             }
+
+            productDTO.Id = tempId;
+
+            CategoryDTO category = categories.GetById(productDTO.CategoryId);
+            if (category == null)
+            {
+                result.Error = true;
+                result.Message = "Category is not exists";
+                return result;
+            }
+            productsDTO.Items.Add(productDTO);
+            return productsRepository.Save(productsDTO);
+        }
         public ResultDTO Edit(ProductDTO productDTO)
-        {            
+        {
             //TODO: Checkers here 
-            for ( int i = 0; i < productsDTO.Items.Count; i++)
+            for (int i = 0; i < productsDTO.Items.Count; i++)
             {
                 if (productsDTO.Items[i].Id == productDTO.Id)
                 {
@@ -67,6 +83,36 @@ namespace IESUX.Business
         {
             return productsDTO;
         }
+
+        public ProductsDTO GetByCategoryId(int categoryId)
+        {
+            ProductsDTO result = new ProductsDTO();
+            result.Items = new List<ProductDTO>();
+            foreach (ProductDTO product in productsDTO.Items)
+            {
+                if (product.CategoryId == categoryId)
+                {
+                    result.Items.Add(product);
+                }
+            }
+            return result;
+        }
+
+        public ProductsDTO GetById(int Id)
+        {
+            ProductsDTO result = new ProductsDTO();
+            result.Items = new List<ProductDTO>();
+            foreach (ProductDTO product in productsDTO.Items)
+            {
+                if (product.Id == Id)
+                {
+                    result.Items.Add(product);
+                }
+            }
+            return result;
+        }
+
+
         public ResultDTO Delete(ProductDTO productDTO)
         {
             ProductsRepository categoriesRepository = new ProductsRepository();

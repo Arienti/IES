@@ -47,7 +47,7 @@ namespace IESUX
             ProductDTO product = new ProductDTO();
             try
             {
-                product.Id = int.Parse(ID.Text);
+                //product.Id = int.Parse(ID.Text);
                 product.Description = Description.Text;
                 product.Cost = float.Parse(Cost.Text);
                 product.CategoryId = category.CategoryId;

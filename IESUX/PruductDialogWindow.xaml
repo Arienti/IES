@@ -35,7 +35,7 @@
         <TextBlock Grid.Row="2" Text="Description" FontWeight="Bold" Margin="119,10,0,54" HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="3" Text="Cost" VerticalAlignment="Top" FontWeight="Bold" Height="16" Grid.Column="1" Margin="101,7,119,0" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="4" Text="Select Category" FontWeight="Bold" Margin="0,0,0,64" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ID" Margin="0,28,0,32" HorizontalAlignment="Stretch"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="ID" Margin="0,28,0,32" HorizontalAlignment="Stretch"/>
 
         <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Margin="0,28,0,32" />
         <TextBox x:Name="Cost" Grid.Row="3" Grid.Column="1" Margin="0,28,0,32" />

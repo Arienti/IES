@@ -80,19 +80,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <DataGrid x:Name="categoryList" Grid.Column="0" ColumnWidth="*"  RowBackground="#FF82B1EA" FontWeight="Bold" Foreground="Black"  AlternatingRowBackground="#FFB1DCE0" BorderBrush="White" BorderThickness="5" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" Background="#FF82B1EA" HeadersVisibility="All" CanUserSortColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="CategoryId" Header="Category Id">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Image Source="/folder.jpg" MaxHeight="50" MaxWidth="80" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
-                                <TextBlock Text="{Binding CategoryName}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <WrapPanel x:Name="categoryList" Grid.Column="0" >
+        </WrapPanel>
     </Grid>
 </Page>
