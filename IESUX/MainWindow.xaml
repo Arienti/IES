@@ -12,9 +12,9 @@
             <RowDefinition Height="204*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="AddProductButton" Content="Add Product" Click="AddProductButton_Click" Width="100" HorizontalAlignment="Left"></Button>
-            <Button x:Name="DeleteProduct" Content="Delete Product"  Width="100" Click="DeleteProduct_Click"/>
             <Button x:Name="Products" Content="Products"  Width="100" Click="Products_Click"/>
+            <Button x:Name="Users" Content="Manager and Users"  Width="120" Click="Users_Click" />
+            <Button x:Name="Settings" Content="Settings"  Width="100" HorizontalAlignment="Left"/>
         </StackPanel>
         <Frame x:Name="Main" Grid.Row="1"/>
         <ListView x:Name="ProductsListView" Grid.Row="1" Visibility="Visible">

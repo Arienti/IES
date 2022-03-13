@@ -181,5 +181,11 @@ namespace IESUX
             Main.Content = new ProductsList();
 
         }
+
+        private void Users_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsListView.Visibility = Visibility.Collapsed;
+            Main.Content = new ManagerandUsers();
+        }
     }
 }

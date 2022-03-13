@@ -171,6 +171,18 @@ namespace IESUX
             CategoryDTO category = listItem.Tag as CategoryDTO;
             RefreshProductsList(category.CategoryId);
         }
+
+        private void AddCategory_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow(categories);
+            categoryWindow.Title = "Add Category";
+            //categoryWindow.Owner = this;
+
+            if (categoryWindow.ShowDialog() == true)
+            {
+                RefreshCategoryList();
+            }
+        }
     }
 }
 
