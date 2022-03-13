@@ -18,6 +18,7 @@
     <ProjectReference Include="..\IESBusiness\IESBusiness.csproj" />
     <ProjectReference Include="..\IESModels\IESModels.csproj" />
     <ProjectReference Include="..\IESRepository\IESRepository.csproj" />
+    <ProjectReference Include="..\IESRESTfulClient\IESRESTfulClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -28,9 +28,10 @@ namespace IESUX
         private CategoriesBusiness categories = new CategoriesBusiness();
         public MainWindow()
         {
-            products = new ProductsBusiness(categories); ;
+            products = new ProductsBusiness(categories); 
             InitializeComponent();
-
+            IESRESTfulClient.ProductBussines bussines = new IESRESTfulClient.ProductBussines();
+            ProductsDTO product = bussines.Get().Result;
             //test -----------
             /* CategoryDTO category = new CategoryDTO();
              category.Id = 1;

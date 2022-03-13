@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESUX", "IESUX\IESUX.csproj", "{8FCCE184-F0A9-407B-AB48-675E0B3652CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSimpleHTTPServer", "DemoSimpleHTTPServer\DemoSimpleHTTPServer.csproj", "{8F0212B5-D73F-4DF2-A92D-60F28B786257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoSimpleHTTPServer", "DemoSimpleHTTPServer\DemoSimpleHTTPServer.csproj", "{8F0212B5-D73F-4DF2-A92D-60F28B786257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESRepository", "IESRepository\IESRepository.csproj", "{2627B69F-1945-4053-BCF4-6602C2D44307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESRepository", "IESRepository\IESRepository.csproj", "{2627B69F-1945-4053-BCF4-6602C2D44307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESModels", "IESModels\IESModels.csproj", "{F587A33C-F131-4604-A1A7-099DC4BF1DB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESModels", "IESModels\IESModels.csproj", "{F587A33C-F131-4604-A1A7-099DC4BF1DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESBusiness", "IESBusiness\IESBusiness.csproj", "{26391D05-E0DC-48B8-851E-40A3B5D55615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESBusiness", "IESBusiness\IESBusiness.csproj", "{26391D05-E0DC-48B8-851E-40A3B5D55615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESRESTfulClient", "IESRESTfulClient\IESRESTfulClient.csproj", "{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{26391D05-E0DC-48B8-851E-40A3B5D55615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26391D05-E0DC-48B8-851E-40A3B5D55615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26391D05-E0DC-48B8-851E-40A3B5D55615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
