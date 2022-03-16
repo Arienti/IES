@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IESInterfaces\IESInterfaces.csproj" />
     <ProjectReference Include="..\IESModels\IESModels.csproj" />
     <ProjectReference Include="..\IESRepository\IESRepository.csproj" />
   </ItemGroup>

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESModels", "IESModels\IESM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESBusiness", "IESBusiness\IESBusiness.csproj", "{26391D05-E0DC-48B8-851E-40A3B5D55615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESRESTfulClient", "IESRESTfulClient\IESRESTfulClient.csproj", "{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IESRESTfulClient", "IESRESTfulClient\IESRESTfulClient.csproj", "{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IESInterfaces", "IESInterfaces\IESInterfaces.csproj", "{7C43E53D-AD62-4C47-85AC-414336F38D1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F57FDFC2-7A58-4C11-9C97-18C95FC6658A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C43E53D-AD62-4C47-85AC-414336F38D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C43E53D-AD62-4C47-85AC-414336F38D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C43E53D-AD62-4C47-85AC-414336F38D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C43E53D-AD62-4C47-85AC-414336F38D1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

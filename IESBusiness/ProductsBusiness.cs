@@ -1,4 +1,5 @@
-﻿using IESUX.Models;
+﻿using IESInterfaces;
+using IESUX.Models;
 using IESUX.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IESUX.Business
 {
-    public class ProductsBusiness
+    public class ProductsBusiness : IProductBusiness
     {
         private ProductsDTO productsDTO = new ProductsDTO();
         private ProductsRepository productsRepository = new ProductsRepository();
@@ -118,6 +119,11 @@ namespace IESUX.Business
             ProductsRepository categoriesRepository = new ProductsRepository();
             productsDTO.Items.Remove(productDTO);
             return categoriesRepository.Save(productsDTO);
+        }
+
+        public ResultDTO DeleteAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
