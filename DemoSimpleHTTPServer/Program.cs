@@ -26,8 +26,6 @@ namespace DemoSimpleHTTPServer
       
                 CategoriesBusiness categoriesBusiness = new CategoriesBusiness();
                 ProductsBusiness productsBusiness = new ProductsBusiness(categoriesBusiness);
-
-
             while (true)
             {
 
@@ -40,7 +38,6 @@ namespace DemoSimpleHTTPServer
 
                 string responseString = "<HTML><BODY>Not found</BODY></HTML>";
                 //GET POST PUT DELETE 
-                
                 if (request.RawUrl.Equals("/products"))
                 {
                     responseString = JsonConvert.SerializeObject(productsBusiness.Get());

@@ -31,7 +31,7 @@ namespace IESUX
             products = new ProductsBusiness(categories); 
             InitializeComponent();
             IESRESTfulClient.ProductBussines bussines = new IESRESTfulClient.ProductBussines();
-            ProductsDTO product = bussines.Get().Result;
+         //   ProductsDTO product = bussines.Get().Result;
             //test -----------
             /* CategoryDTO category = new CategoryDTO();
              category.Id = 1;

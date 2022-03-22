@@ -123,7 +123,9 @@ namespace IESUX.Business
 
         public ResultDTO DeleteAll()
         {
-            throw new NotImplementedException();
+            ProductsRepository categoriesRepository = new ProductsRepository();
+            productsDTO.Items.Clear();
+            return categoriesRepository.Save(productsDTO);
         }
     }
 }

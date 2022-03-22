@@ -21,11 +21,25 @@ namespace IESRESTfulClient
             throw new NotImplementedException();
         }
 
-        public ResultDTO DeleteAll()
+        public async Task<ResultDTO> DeleteAll()
         {
-            throw new NotImplementedException();
-        }
+            //throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("http://127.0.0.1:8888/products");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                ProductDTO product = new ProductDTO();
+                ProductsDTO products = new ProductsDTO();
+                products.Items.Clear();
+            }
+            catch
+            {
 
+            }
+            return null;
+        }
+        
         public ResultDTO Edit(ProductDTO productDTO)
         {
             throw new NotImplementedException();
@@ -55,6 +69,11 @@ namespace IESRESTfulClient
         }
 
         public ProductsDTO GetById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        ResultDTO IProductBusiness.DeleteAll()
         {
             throw new NotImplementedException();
         }
